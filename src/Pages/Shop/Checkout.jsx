@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Authcontext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 const Checkout = () => {
   const { cart, clearCart } = useContext(CartContext);
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [billing, setBilling] = useState({

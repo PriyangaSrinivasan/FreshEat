@@ -1,17 +1,17 @@
 import { createContext, useState, useEffect } from "react";
 
-export const Authcontext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 👈 Add loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
-    setLoading(false); // ✅ mark that auth is loaded
+    setLoading(false); //  mark that auth is loaded
   }, []);
 
   const login = (email, password) => {
@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <Authcontext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
       {children}
-    </Authcontext.Provider>
+    </AuthContext.Provider>
   );
 };

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { Authcontext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 const Cart = () => {
   const { cart, removeItem, clearCart, updateQuantity } =
     useContext(CartContext);
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);

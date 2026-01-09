@@ -4,7 +4,7 @@ import { CiHeart } from "react-icons/ci";
 import { BsHeartFill } from "react-icons/bs";
 import { WishlistContext } from "../context/WishlistContext";
 import { BsMinecartLoaded } from "react-icons/bs";
-import { Authcontext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
 
 const titleicon = "/assets/titleicon.svg";
@@ -15,7 +15,7 @@ const Menu = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const { addToCart } = useContext(CartContext);
   const { wishlist, toggleWishlist } = useContext(WishlistContext);
 

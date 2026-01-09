@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { WishlistContext } from "../../context/WishlistContext";
 import { CartContext } from "../../context/CartContext";
-import { Authcontext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { BsMinecartLoaded } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const Wishlist = () => {
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
-import { Authcontext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { BsCart3, BsHeartFill } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { WishlistContext } from "../context/WishlistContext";
@@ -8,7 +8,7 @@ import { CartContext } from "../context/CartContext";
 import logo from "/assets/logo.svg";
 
 const Navbar = () => {
-  const { user, logout } = useContext(Authcontext);
+  const { user, logout } = useContext(AuthContext);
   const { wishlist } = useContext(WishlistContext);
   const { totalItems } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);

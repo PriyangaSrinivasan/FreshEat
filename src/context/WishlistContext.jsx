@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { Authcontext } from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 
 export const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const [wishlist, setWishlist] = useState(() => {
     const saved = localStorage.getItem("wishlist");
     return saved ? JSON.parse(saved) : [];

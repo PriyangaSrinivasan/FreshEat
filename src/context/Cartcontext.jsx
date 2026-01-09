@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { Authcontext } from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { user } = useContext(Authcontext);
+  const { user } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
 
   // ✅ Load cart from localStorage when user logs in
