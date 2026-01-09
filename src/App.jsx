@@ -5,7 +5,7 @@ import Menu from "./Pages/Menu";
 import Cart from "./Pages/Shop/Cart.jsx";
 import Checkout from "./Pages/Shop/Checkout.jsx";
 import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext.jsx";
+import { AuthContext } from "./context/AuthContext";
 import Orders from "./Pages/Shop/Orders.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
@@ -25,7 +25,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/menu" element={< Menu/>} />
         <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
         <Route
