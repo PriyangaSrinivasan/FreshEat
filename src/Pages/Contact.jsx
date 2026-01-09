@@ -1,9 +1,7 @@
 import React from "react";
-import { FaLocationDot } from "react-icons/fa6"; // FA6 icon
-import { FaPhoneAlt } from "react-icons/fa";     // FA5 icon
-import { MdEmail } from "react-icons/md";        // Material icon
-
-
+import { FaLocationDot } from "react-icons/fa6"; 
+import { FaPhoneAlt } from "react-icons/fa";     
+import { MdEmail } from "react-icons/md";        
 
 const Contact = () => {
   return (
