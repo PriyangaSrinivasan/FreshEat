@@ -5,7 +5,7 @@ import Menu from "./Pages/Menu";
 import Cart from "./Pages/Shop/Cart.jsx";
 import Checkout from "./Pages/Shop/Checkout.jsx";
 import { useContext } from "react";
-import { Authcontext } from "./context/AuthContext";
+import { Authcontext } from "./context/AuthContext.jsx";
 import Orders from "./Pages/Shop/Orders.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
