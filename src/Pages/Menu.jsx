@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
@@ -7,7 +5,7 @@ import { BsHeartFill } from "react-icons/bs";
 import { WishlistContext } from "../context/WishlistContext";
 import { BsMinecartLoaded } from "react-icons/bs";
 import { Authcontext } from "../context/AuthContext";
-import { CartContext } from "../context/Cartcontext";
+import { CartContext } from "../context/CartContext";
 
 const titleicon = "/assets/titleicon.svg";
 
@@ -39,32 +37,32 @@ const Menu = () => {
   }, []);
 
   // Add to cart
-// Add to cart
-const handleAddToCart = async (dish) => {
-  if (!user) {
-    alert("Please login first!");
-    navigate("/login");
-    return;
-  }
+  // Add to cart
+  const handleAddToCart = async (dish) => {
+    if (!user) {
+      alert("Please login first!");
+      navigate("/login");
+      return;
+    }
 
-  const dishForCart = {
-    id: dish.id,
-    title: dish.name || dish.title, // <-- always use title
-    price: dish.price,
-    img: dish.img,
-    quantity: 1,
+    const dishForCart = {
+      id: dish.id,
+      title: dish.name || dish.title, // <-- always use title
+      price: dish.price,
+      img: dish.img,
+      quantity: 1,
+    };
+
+    addToCart(dishForCart);
+
+    await fetch("https://68d4c636e29051d1c0ac0c3a.mockapi.io/api/cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...dishForCart, userEmail: user.email }),
+    });
+
+    navigate("/cart");
   };
-
-  addToCart(dishForCart);
-
-  await fetch("https://68d4c636e29051d1c0ac0c3a.mockapi.io/api/cart", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...dishForCart, userEmail: user.email }),
-  });
-
-  navigate("/cart");
-};
 
   // Pagination logic
   const totalPages = Math.ceil(dishes.length / itemsPerPage);
@@ -83,18 +81,40 @@ const handleAddToCart = async (dish) => {
       <div className="about text-white d-flex align-items-center justify-content-center flex-column">
         <h1 style={{ fontSize: "80px", fontWeight: "700" }}>Menu</h1>
         <span>
-          <Link to="/" className="h5">Home</Link> /
-          <Link to="/menu" className="text-danger h5">Menu</Link>
+          <Link to="/" className="h5">
+            Home
+          </Link>{" "}
+          /
+          <Link to="/menu" className="text-danger h5">
+            Menu
+          </Link>
         </span>
       </div>
 
       {/* Menu Section */}
-      <section className="dish-menu d-flex flex-column p-5" style={{ background: "none" }}>
+      <section
+        className="dish-menu d-flex flex-column p-5"
+        style={{ background: "none" }}
+      >
         <div className="text-center py-5">
           <p className="h5">
-            <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcotmpaz0WrFoWasdLIz4Q6skFlPgs8GyaEA&s" width={50} className="pe-3 text-warning" alt="" /></span>
+            <span>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcotmpaz0WrFoWasdLIz4Q6skFlPgs8GyaEA&s"
+                width={50}
+                className="pe-3 text-warning"
+                alt=""
+              />
+            </span>
             POPULAR DISHES
-            <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcotmpaz0WrFoWasdLIz4Q6skFlPgs8GyaEA&s" width={50} className="ps-3 text-warning" alt="" /></span>
+            <span>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcotmpaz0WrFoWasdLIz4Q6skFlPgs8GyaEA&s"
+                width={50}
+                className="ps-3 text-warning"
+                alt=""
+              />
+            </span>
           </p>
           <p className="h2">Best Selling Dishes</p>
         </div>
@@ -120,30 +140,54 @@ const handleAddToCart = async (dish) => {
                     backgroundColor: "#fff",
                     borderRadius: "15px",
                     boxShadow: "0 3px 8px rgba(0,0,0,0.1)",
-                    transition: "transform 0.3s ease"
+                    transition: "transform 0.3s ease",
                   }}
                 >
                   <div>
-                    <img className="pb-3" src={dish.img} alt={dish.name} style={{ width: "200px" }} />
-                    <p className="h3" style={{ fontWeight: "700", lineHeight: "50px" }}>{dish.name}</p>
-                    <p className="text-danger" style={{ fontSize: "20px", fontWeight: "700" }}>{dish.price}</p>
+                    <img
+                      className="pb-3"
+                      src={dish.img}
+                      alt={dish.name}
+                      style={{ width: "200px" }}
+                    />
+                    <p
+                      className="h3"
+                      style={{ fontWeight: "700", lineHeight: "50px" }}
+                    >
+                      {dish.name}
+                    </p>
+                    <p
+                      className="text-danger"
+                      style={{ fontSize: "20px", fontWeight: "700" }}
+                    >
+                      {dish.price}
+                    </p>
                   </div>
 
                   {/* Heart Icon */}
                   <div
                     className="position-absolute d-flex align-items-center justify-content-center"
-                    style={{ zIndex: "999", top: "15px", right: "25px", fontSize: "28px" }}
+                    style={{
+                      zIndex: "999",
+                      top: "15px",
+                      right: "25px",
+                      fontSize: "28px",
+                    }}
                   >
                     <span
-                        onClick={() => toggleWishlist(dish)}
-                        className={`${
-                          wishlist.find((i) => i.id === dish.id)
-                            ? "bg-danger text-white"
-                            : "bg-light text-dark"
-                        } rounded-circle d-flex align-items-center justify-content-center`}
-                        style={{ width: 45, height: 45, cursor: "pointer" }}
-                      >
-                        {wishlist.find((i) => i.id === dish.id) ? <BsHeartFill /> : <CiHeart />}
+                      onClick={() => toggleWishlist(dish)}
+                      className={`${
+                        wishlist.find((i) => i.id === dish.id)
+                          ? "bg-danger text-white"
+                          : "bg-light text-dark"
+                      } rounded-circle d-flex align-items-center justify-content-center`}
+                      style={{ width: 45, height: 45, cursor: "pointer" }}
+                    >
+                      {wishlist.find((i) => i.id === dish.id) ? (
+                        <BsHeartFill />
+                      ) : (
+                        <CiHeart />
+                      )}
                     </span>
                   </div>
 
@@ -162,18 +206,20 @@ const handleAddToCart = async (dish) => {
             {/* Pagination */}
             <div className="d-flex justify-content-center mt-5 gap-2 flex-wrap">
               <button
-                   className="border-0 bg-transparent"
+                className="border-0 bg-transparent"
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
-                ◀ 
+                ◀
               </button>
 
               {[...Array(totalPages)].map((_, index) => (
                 <button
                   key={index}
                   onClick={() => handlePageChange(index + 1)}
-                  className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
+                  className={`pagination-btn ${
+                    currentPage === index + 1 ? "active" : ""
+                  }`}
                 >
                   {index + 1}
                 </button>
@@ -184,7 +230,7 @@ const handleAddToCart = async (dish) => {
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >
-                 ▶
+                ▶
               </button>
             </div>
           </>

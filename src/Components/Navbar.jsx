@@ -4,9 +4,8 @@ import { Authcontext } from "../context/AuthContext";
 import { BsCart3, BsHeartFill } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { WishlistContext } from "../context/WishlistContext";
-import { CartContext } from "../context/Cartcontext";
+import { CartContext } from "../context/CartContext";
 import logo from "/assets/logo.svg";
-
 
 const Navbar = () => {
   const { user, logout } = useContext(Authcontext);

@@ -5,7 +5,7 @@
 // import "react-multi-carousel/lib/styles.css";
 // import { Link } from "react-router-dom";
 // import { CartContext } from "../context/Cartcontext";
-  
+
 // // Banner & shape images
 // const item1 = "/assets/item1_1.png";
 // const item3 = "/assets/item1_3.png";
@@ -229,7 +229,7 @@
 //         </div>
 //         <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center">
 //        {foods.map((dish, idx) => (
-        
+
 //         <div key={idx} className="card card-dish text-center d-flex align-items-center justify-content-center position-relative p-5 pt-5"
 //             style={{ width: "21rem", height: "25rem", zIndex: 1 }}>
 //         <img className="pb-3" src={dish.img} style={{ width: "200px" }} />
@@ -253,7 +253,7 @@
 //                   img: dish.img
 //                 })
 //              }
- 
+
 //             >
 //               <BsMinecartLoaded />
 //             </span>
@@ -350,7 +350,7 @@ import { BsMinecartLoaded } from "react-icons/bs";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
-import { CartContext } from "../context/Cartcontext";
+import { CartContext } from "../context/CartContext";
 import { Authcontext } from "../context/AuthContext";
 
 // Banner & shape images
@@ -359,7 +359,7 @@ const item3 = "/assets/item1_3.png";
 const item5 = "/assets/dishes2_5.webp";
 const item6 = "/assets/dishes1_4.webp";
 const item7 = "/assets/dishes1_5.webp";
-const img1icon ="/assets/img1icon.png"
+const img1icon = "/assets/img1icon.png";
 
 const img1 = "/assets/img1.png";
 const img2 = "/assets/img2.png";
@@ -399,15 +399,15 @@ const Home = () => {
       fetch("https://68f85aefdeff18f212b5dd8a.mockapi.io/fooditems").then(
         (res) => res.json()
       ),
-      fetch(
-        "https://68f86136deff18f212b5f1e7.mockapi.io/categories"
-      ).then((res) => res.json()),
-           fetch(
-        "https://68d4c636e29051d1c0ac0c3a.mockapi.io/api/items"
-      ).then((res) => res.json()),
+      fetch("https://68f86136deff18f212b5f1e7.mockapi.io/categories").then(
+        (res) => res.json()
+      ),
+      fetch("https://68d4c636e29051d1c0ac0c3a.mockapi.io/api/items").then(
+        (res) => res.json()
+      ),
     ])
-      .then(([dishes, fooditems, categories,items]) =>
-        setData({ dishes, fooditems, categories,items })
+      .then(([dishes, fooditems, categories, items]) =>
+        setData({ dishes, fooditems, categories, items })
       )
       .catch((err) => console.error("Error fetching data:", err));
   }, []);
@@ -519,8 +519,16 @@ const Home = () => {
           width={200}
         />
         <div className="container mb-5">
-        
-          <p className="text-warning text-center fw-bold">  <span><img src={img1icon} width={50}/></span>BEST FOOD  <span><img src={img1icon} width={50}/></span></p>
+          <p className="text-warning text-center fw-bold">
+            {" "}
+            <span>
+              <img src={img1icon} width={50} />
+            </span>
+            BEST FOOD{" "}
+            <span>
+              <img src={img1icon} width={50} />
+            </span>
+          </p>
           <p className="h2 text-white text-center fw-bold pb-5">
             Popular Food Items
           </p>
@@ -556,7 +564,10 @@ const Home = () => {
                   <p className="h3 fw-bold" style={{ lineHeight: "50px" }}>
                     {item.title}
                   </p>
-                  <p className="text-danger fw-bold" style={{ fontSize: "20px" }}>
+                  <p
+                    className="text-danger fw-bold"
+                    style={{ fontSize: "20px" }}
+                  >
                     {item.price}
                   </p>
                 </div>
@@ -569,7 +580,16 @@ const Home = () => {
       {/* Popular Dishes */}
       <section className="dish-menu d-flex flex-column p-5">
         <div className="text-center py-5">
-          <p className="h5 text-white"> <span><img src={img1icon} width={50}/></span>POPULAR DISHES <span><img src={img1icon} width={50}/></span></p>
+          <p className="h5 text-white">
+            {" "}
+            <span>
+              <img src={img1icon} width={50} />
+            </span>
+            POPULAR DISHES{" "}
+            <span>
+              <img src={img1icon} width={50} />
+            </span>
+          </p>
           <p className="h2 text-white">Best Selling Dishes</p>
         </div>
         <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center">
@@ -590,51 +610,59 @@ const Home = () => {
               {/* Wishlist */}
               <div
                 className="position-absolute d-flex align-items-center justify-content-center"
-                style={{ zIndex: 999, top: "15px", right: "25px", fontSize: 28 }}
+                style={{
+                  zIndex: 999,
+                  top: "15px",
+                  right: "25px",
+                  fontSize: 28,
+                }}
               >
-             <span
-                    onClick={() => {
-                      if (!user) {
-                        alert("Please login first!");
-                        return;
-                      }
+                <span
+                  onClick={() => {
+                    if (!user) {
+                      alert("Please login first!");
+                      return;
+                    }
 
-                      // Ensure the dish has an ID (important!)
-                      const dishWithId = {
-                        ...dish,
-                        id: dish.id || dish.title.replace(/\s+/g, "-"), // fallback ID
-                      };
+                    // Ensure the dish has an ID (important!)
+                    const dishWithId = {
+                      ...dish,
+                      id: dish.id || dish.title.replace(/\s+/g, "-"), // fallback ID
+                    };
 
-                      toggleWishlist(dishWithId);
-                    }}
-                    className={`${
-                      wishlist.find(
-                        (i) =>
-                          i.id === (dish.id || dish.title.replace(/\s+/g, "-")) &&
-                          i.userEmail === user?.email
-                      )
-                        ? "bg-danger text-white"
-                        : "bg-light text-dark"
-                    } rounded-circle d-flex align-items-center justify-content-center`}
-                    style={{ width: 45, height: 45, cursor: "pointer" }}
-                  >
-                    {wishlist.find(
+                    toggleWishlist(dishWithId);
+                  }}
+                  className={`${
+                    wishlist.find(
                       (i) =>
                         i.id === (dish.id || dish.title.replace(/\s+/g, "-")) &&
                         i.userEmail === user?.email
-                    ) ? (
-                      <BsHeartFill />
-                    ) : (
-                      <CiHeart />
-                    )}
-            </span>
-
+                    )
+                      ? "bg-danger text-white"
+                      : "bg-light text-dark"
+                  } rounded-circle d-flex align-items-center justify-content-center`}
+                  style={{ width: 45, height: 45, cursor: "pointer" }}
+                >
+                  {wishlist.find(
+                    (i) =>
+                      i.id === (dish.id || dish.title.replace(/\s+/g, "-")) &&
+                      i.userEmail === user?.email
+                  ) ? (
+                    <BsHeartFill />
+                  ) : (
+                    <CiHeart />
+                  )}
+                </span>
               </div>
 
               {/* Cart Icon */}
               <span
                 className="cart-img"
-                style={{ cursor: "pointer", fontSize: "28px", marginTop: "10px" }}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "28px",
+                  marginTop: "10px",
+                }}
                 onClick={() =>
                   addToCart({
                     id: idx,
@@ -655,7 +683,16 @@ const Home = () => {
       <section className="food-cat bg-dark d-flex py-5">
         <div className="container bg-white pt-2 p-lg-5">
           <div className="text-center mb-4">
-            <p className="h5 text-warning"> <span><img src={img1icon} width={50}/></span>FOOD MENU <span><img src={img1icon} width={50}/></span></p>
+            <p className="h5 text-warning">
+              {" "}
+              <span>
+                <img src={img1icon} width={50} />
+              </span>
+              FOOD MENU{" "}
+              <span>
+                <img src={img1icon} width={50} />
+              </span>
+            </p>
             <p className="h1">Fresheat Foods Menu</p>
           </div>
 
@@ -685,7 +722,10 @@ const Home = () => {
               }`}
               style={{ cursor: "pointer", fontWeight: 600, minWidth: 150 }}
             >
-             <span><img src={img1icon} width={80}/>All</span>
+              <span>
+                <img src={img1icon} width={80} />
+                All
+              </span>
             </div>
           </div>
 

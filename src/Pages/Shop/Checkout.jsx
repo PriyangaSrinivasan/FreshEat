@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { Authcontext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../../context/Cartcontext';
+import React, { useState, useContext } from "react";
+import { Authcontext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const Checkout = () => {
   const { cart, clearCart } = useContext(CartContext);
@@ -9,12 +9,13 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const [billing, setBilling] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    contact: '',
-    address: '',
+    name: user?.name || "",
+    email: user?.email || "",
+    contact: "",
+    address: "",
     amount: cart.reduce(
-      (acc, item) => acc + parseFloat(item.price.replace("$", "")) * item.quantity,
+      (acc, item) =>
+        acc + parseFloat(item.price.replace("$", "")) * item.quantity,
       0
     ),
   });
@@ -44,11 +45,14 @@ const Checkout = () => {
       theme: { color: "#3399cc" },
       handler: function (response) {
         // Payment success
-        alert(`Payment Successful! Razorpay ID: ${response.razorpay_payment_id}`);
+        alert(
+          `Payment Successful! Razorpay ID: ${response.razorpay_payment_id}`
+        );
 
         // Store order in localStorage per user
         const ordersKey = `orders_${user.email}`;
-        const existingOrders = JSON.parse(localStorage.getItem(ordersKey)) || [];
+        const existingOrders =
+          JSON.parse(localStorage.getItem(ordersKey)) || [];
         const newOrder = {
           id: Date.now(),
           items: cart,
@@ -57,7 +61,10 @@ const Checkout = () => {
           paymentId: response.razorpay_payment_id,
           date: new Date().toLocaleString(),
         };
-        localStorage.setItem(ordersKey, JSON.stringify([...existingOrders, newOrder]));
+        localStorage.setItem(
+          ordersKey,
+          JSON.stringify([...existingOrders, newOrder])
+        );
 
         // Clear cart
         clearCart();
@@ -74,7 +81,7 @@ const Checkout = () => {
   return (
     <div className="checkout">
       <br></br>
-      <h2 className='text-center text-white'>Checkout & Razorpay Payment</h2>
+      <h2 className="text-center text-white">Checkout & Razorpay Payment</h2>
       <br></br>
       <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "auto" }}>
         <input
