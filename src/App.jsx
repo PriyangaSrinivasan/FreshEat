@@ -5,7 +5,7 @@ import Menu from "./Pages/Menu";
 import Cart from "./Pages/Shop/Cart.jsx";
 import Checkout from "./Pages/Shop/Checkout.jsx";
 import { useContext } from "react";
-import { Authcontext } from "./context/AuthContext.jsx";
+import { AuthContext } from "./context/AuthContext.jsx";
 import Orders from "./Pages/Shop/Orders.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
@@ -14,7 +14,7 @@ import Footer from "./Components/Footer.jsx";
 import Contact from "./Pages/Contact.jsx";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useContext(Authcontext);
+  const { user, loading } = useContext(AuthContext);
   if (loading) return <p>Loading...</p>;
   return user ? children : <Navigate to="/login" />;
 };
