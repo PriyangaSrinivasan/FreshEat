@@ -12,7 +12,7 @@ https://fresheathub.netlify.app/
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home](./public/screenshot/homepage.png)
+![Home](./public/screenshot/home.png)
 
 ### 📋 Menu Page
 ![Menu](./public/screenshot/menu.png)
