@@ -11,6 +11,9 @@ https://fresheathub.netlify.app/
 ---
 ## 📸 Screenshots
 
+### 🔐 Login Page
+![Login](./public/screenshot/login.png)
+
 ### 🏠 Home Page
 ![Home](./public/screenshot/home.png)
 
@@ -23,14 +26,11 @@ https://fresheathub.netlify.app/
 ### 💳 Checkout Page
 ![Checkout](./public/screenshot/checkout.png)
 
-### 🔐 Login Page
-![Login](./public/screenshot/login.png)
+### 💰 Payment
+![Payment](./public/screenshot/payment.png)
 
 ### 📦 Orders Page
 ![Orders](./public/screenshot/order.png)
-
-### 💰 Payment
-![Payment](./public/screenshot/payment.png)
 
 ## ✨ Features
 
