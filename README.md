@@ -9,6 +9,28 @@ A modern, fully responsive food delivery web application built with **React.js**
 https://fresheathub.netlify.app/
 
 ---
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home](./public/screenshot/homepage.png)
+
+### 📋 Menu Page
+![Menu](./public/screenshot/menu.png)
+
+### 🛒 Cart Page
+![Cart](./public/screenshot/cart.png)
+
+### 💳 Checkout Page
+![Checkout](./public/screenshot/checkout.png)
+
+### 🔐 Login Page
+![Login](./public/screenshot/login.png)
+
+### 📦 Orders Page
+![Orders](./public/screenshot/order.png)
+
+### 💰 Payment
+![Payment](./public/screenshot/payment.png)
 
 ## ✨ Features
 
